@@ -27,7 +27,7 @@ def get_all_the_emails_of_val_doise_townhalls
 		ville = l.text
 		lien = "http://annuaire-des-mairies.com" + l['href'][1..-1]
 		email = get_the_email_of_a_townhal_from_its_webpage("#{lien}")
-		annuaire[:"#{ville}"] = "#{email}"
+		annuaire[ville] = email
 	end
 
 	puts annuaire
