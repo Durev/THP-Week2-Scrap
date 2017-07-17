@@ -30,10 +30,24 @@ def wiki_road
 
 	#page = Nokogiri::HTML(open(url_aleatoire))
 
-	puts wiki_first_link(url_depart)
+	liste_articles = [url_depart]
 
-	#liste_articles = [url_depart]
+	new_url =  wiki_first_link(url_depart)
+	
+	until (new_url === "https://fr.wikipedia.org/wiki/Philosophie") || liste_articles.include?(new_url)
+		liste_articles << new_url
+		puts new_url
+		new_url = wiki_first_link(new_url)
+		#puts new_url
+	end
+
+	puts "Terminé !"
+	puts "#{liste_articles.size} articles ont été visités! "
+	puts "La dernière page visitée est #{new_url}"
+	#puts liste_articles
 
 end
 
 wiki_road
+
+#A traiter : ne pas considérer les liens internes à la page
