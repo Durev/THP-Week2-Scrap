@@ -18,9 +18,7 @@ end
 def get_all_the_emails_of_val_doise_townhalls
 	page = Nokogiri::HTML(open("http://annuaire-des-mairies.com/val-d-oise.html"))
 
-	towns_directory = Hash.new(0)
-
-	page.css("a.lientxt").each_with_object(towns_directory) do |townhall, hash|
+	page.css("a.lientxt").each_with_object(Hash.new(0)) do |townhall, hash|
 		town_name = townhall.text
 		link = "http://annuaire-des-mairies.com" + townhall['href'][1..-1]
 		email = get_the_email_of_a_townhal_from_its_webpage(link)
